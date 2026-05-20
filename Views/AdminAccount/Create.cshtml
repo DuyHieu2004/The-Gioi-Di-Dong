@@ -1,0 +1,73 @@
+﻿@model TheGioiDiDong.Models.NguoiDung
+@{
+    ViewBag.Title = "Cấp tài khoản";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container mt-2 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-header bg-success text-white fw-bold">
+                    ➕ Cấp Tài Khoản Mới
+                </div>
+                <div class="card-body p-4 bg-light">
+                    @if (ViewBag.error != null)
+                    {
+                        <div class="alert alert-danger">⚠️ @ViewBag.error</div>
+                    }
+
+                    @using (Html.BeginForm("Create", "AdminAccount", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="fw-bold">Tên Đăng Nhập <span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.TenDangNhap, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="fw-bold">Mật Khẩu Khởi Tạo <span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control", @type = "password", @required = "required" } })
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="fw-bold">Họ Và Tên</label>
+                                @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="fw-bold">Quyền Hạn Hệ Thống</label>
+                                <select name="QuyenHan" class="form-select">
+                                    <option value="User" selected>User (Khách hàng)</option>
+                                    <option value="Admin">Admin (Quản trị viên)</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="fw-bold">Email</label>
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @type = "email" } })
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="fw-bold">Số Điện Thoại</label>
+                                @Html.EditorFor(model => model.DienThoai, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+
+                            <div class="col-md-12 mb-4">
+                                <label class="fw-bold">Địa Chỉ</label>
+                                @Html.TextAreaFor(model => model.DiaChi, new { @class = "form-control", @rows = "2" })
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="@Url.Action("Index", "AdminAccount")" class="btn btn-outline-secondary">Hủy bỏ</a>
+                            <button type="submit" class="btn btn-success fw-bold">💾 Tạo Tài Khoản</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+﻿@model TheGioiDiDong.Models.KhuyenMai
+@{
+    ViewBag.Title = "Tạo mã giảm giá mới";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container mt-4 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-header bg-success text-white fw-bold">
+                    🎫 Tạo Mã Giảm Giá / Khuyến Mãi Mới
+                </div>
+                <div class="card-body p-4 bg-light">
+                    @using (Html.BeginForm("Create", "AdminKhuyenMai", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="fw-bold">Ký tự mã giảm (Viết liền không dấu) <span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.MaGiamGia, new { htmlAttributes = new { @class = "form-control", @placeholder = "VD: GIAM20", @required = "required" } })
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="fw-bold">Tỉ lệ giảm giá (%) <span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.PhanTramGiam, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "1", @max = "100", @required = "required" } })
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="fw-bold">Ngày bắt đầu có hiệu lực</label>
+                                <input type="date" name="NgayBatDau" class="form-control" />
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="fw-bold">Ngày kết thúc thời hạn</label>
+                                <input type="date" name="NgayKetThuc" class="form-control" />
+                            </div>
+
+                            <div class="col-md-12 mb-4">
+                                <label class="fw-bold">Chỉ áp dụng riêng cho sản phẩm này (Tùy chọn):</label>
+                                @Html.DropDownList("MaSanPham", null, "--- Tất cả sản phẩm trong cửa hàng ---", htmlAttributes: new { @class = "form-select" })
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="@Url.Action("Index", "AdminKhuyenMai")" class="btn btn-outline-secondary">Quay lại</a>
+                            <button type="submit" class="btn btn-success fw-bold">💾 Phát hành mã giảm giá</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

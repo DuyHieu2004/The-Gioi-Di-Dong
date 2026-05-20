@@ -1,0 +1,73 @@
+﻿@model TheGioiDiDong.Models.NguoiDung
+@{
+    ViewBag.Title = "Đăng ký tài khoản";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center mt-5 mb-5">
+    <div class="col-md-6">
+        <div class="card shadow border-0" style="border-radius: 16px;">
+            <div class="card-header bg-success text-white text-center py-3" style="border-radius: 16px 16px 0 0;">
+                <h4 class="mb-0 fw-bold">📝 Đăng Ký Tài Khoản Khách Hàng</h4>
+            </div>
+            <div class="card-body p-4 bg-light">
+
+                @if (ViewBag.error != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        ⚠️ @ViewBag.error
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "needs-validation" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label fw-bold">Tên đăng nhập <span class="text-danger">*</span></label>
+                            <input type="text" name="TenDangNhap" class="form-control" placeholder="Nhập tên tài khoản (viết liền không dấu)" required />
+                        </div>
+
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label fw-bold">Mật khẩu <span class="text-danger">*</span></label>
+                            <input type="password" name="MatKhau" class="form-control" placeholder="Nhập mật khẩu bảo mật" required />
+                        </div>
+
+                        <hr class="text-muted my-3">
+
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label fw-bold">Họ và tên</label>
+                            <input type="text" name="HoTen" class="form-control" placeholder="Nhập đầy đủ họ và tên" />
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Email</label>
+                            <input type="email" name="Email" class="form-control" placeholder="vi_du@gmail.com" />
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Số điện thoại</label>
+                            <input type="tel" name="DienThoai" class="form-control" placeholder="Nhập số điện thoại" />
+                        </div>
+
+                        <div class="col-md-12 mb-4">
+                            <label class="form-label fw-bold">Địa chỉ nhận hàng</label>
+                            <textarea name="DiaChi" class="form-control" rows="2" placeholder="Nhập số nhà, tên đường, phường/xã, quận/huyện..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success btn-lg fw-bold shadow-sm" style="border-radius: 8px;">
+                            🚀 Hoàn tất đăng ký
+                        </button>
+                        <a href="@Url.Action("Login", "Account")" class="btn btn-outline-secondary btn-sm mt-2">
+                            Mở trang Đăng nhập nếu đã có tài khoản
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

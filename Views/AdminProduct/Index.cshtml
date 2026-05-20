@@ -1,0 +1,86 @@
+﻿@model IEnumerable<TheGioiDiDong.Models.SanPham>
+@{
+    ViewBag.Title = "Quản lý sản phẩm";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container mt-4 mb-5">
+    <div class="row align-items-center mb-4">
+        <div class="col-md-4 mb-2 mb-md-0">
+            <h2 class="fw-bold mb-0">📱 Quản Lý Sản Phẩm</h2>
+        </div>
+
+        <div class="col-md-5 mb-2 mb-md-0">
+            <form action="@Url.Action("Index", "AdminProduct")" method="get" class="d-flex">
+                <input type="text" name="searchString" class="form-control me-2 shadow-sm border-primary"
+                       placeholder="Nhập tên sản phẩm cần tìm..." value="@ViewBag.CurrentSearch">
+                <button class="btn btn-primary shadow-sm fw-bold px-3" type="submit">🔍 Tìm</button>
+            </form>
+        </div>
+
+        <div class="col-md-3 text-md-end">
+            <a href="@Url.Action("Create", "AdminProduct")" class="btn btn-success fw-bold shadow-sm w-100">
+                ➕ Thêm Sản Phẩm Mới
+            </a>
+        </div>
+    </div>
+
+    <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover align-middle mb-0">
+                    <thead class="table-dark">
+                        <tr class="text-center">
+                            <th>Hình</th>
+                            <th>Tên Sản Phẩm</th>
+                            <th>Giá Bán</th>
+                            <th>Số Lượng</th>
+                            <th>Danh Mục</th>
+                            <th>Trạng Thái</th>
+                            <th>Thao Tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-center">
+                                    <img src="~/Content/Images/@item.HinhAnh" alt="@item.TenSanPham" style="width: 50px; height: 50px; object-fit: contain;" />
+                                </td>
+                                <td><strong class="text-primary">@item.TenSanPham</strong></td>
+                                <td class="text-danger fw-bold text-end">@String.Format("{0:0,0}", item.Gia) đ</td>
+                                <td class="text-center">@item.SoLuong</td>
+                                <td>@item.DanhMucSP.TenDanhMuc</td>
+                                <td class="text-center">
+                                    <span class="badge @(item.MaTrangThai == 1 ? "bg-success" : "bg-danger")">
+                                        @item.TrangThaiSanPham.TenTrangThai
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <a href="@Url.Action("Edit", "AdminProduct", new { id = item.MaSanPham })" class="btn btn-sm btn-primary">✏️ Sửa</a>
+
+                                    @if (item.IsShow == true)
+                                    {
+                                        <a href="@Url.Action("ToggleShow", "AdminProduct", new { id = item.MaSanPham })"
+                                           class="btn btn-sm btn-warning text-dark"
+                                           onclick="return confirm('Bạn có chắc chắn muốn ẨN sản phẩm này khỏi trang khách hàng?');">
+                                            👁️‍🗨️ Ẩn (Xóa mềm)
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("ToggleShow", "AdminProduct", new { id = item.MaSanPham })"
+                                           class="btn btn-sm btn-success"
+                                           onclick="return confirm('Bạn muốn HIỆN lại sản phẩm này trên hệ thống?');">
+                                            👁️ Khôi phục
+                                        </a>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

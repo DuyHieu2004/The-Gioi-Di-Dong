@@ -1,0 +1,67 @@
+﻿@model TheGioiDiDong.Models.NguoiDung
+@{
+    ViewBag.Title = "Chi tiết thành viên";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container mt-2 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-header bg-dark text-white fw-bold">
+                    📄 Thông Tin Chi Tiết Thành Viên: @Model.TenDangNhap
+                </div>
+                <div class="card-body p-4 bg-white">
+                    <table class="table table-striped align-middle fs-5">
+                        <tr>
+                            <th style="width: 30%;">Mã Thành Viên:</th>
+                            <td><span class="badge bg-secondary">#@Model.MaNguoiDung</span></td>
+                        </tr>
+                        <tr>
+                            <th>Tên Tài Khoản:</th>
+                            <td class="fw-bold text-primary">@Model.TenDangNhap</td>
+                        </tr>
+                        <tr>
+                            <th>Họ Và Tên:</th>
+                            <td>@Model.HoTen</td>
+                        </tr>
+                        <tr>
+                            <th>Quyền Hạn:</th>
+                            <td>
+                                <span class="badge @(Model.QuyenHan == "Admin" ? "bg-danger" : "bg-info text-dark")">@Model.QuyenHan</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Trạng Thái:</th>
+                            <td>
+                                @if (Model.IsLocked == true)
+                                {
+                                    <span class="text-danger fw-bold">🚫 Đang bị khóa đăng nhập</span>
+                                }
+                                else
+                                {
+                                    <span class="text-success fw-bold">🟢 Đang hoạt động bình thường</span>
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Email:</th>
+                            <td>@(Model.Email ?? "Chưa thiết lập")</td>
+                        </tr>
+                        <tr>
+                            <th>Số Điện Thoại:</th>
+                            <td>@(Model.DienThoai ?? "Chưa thiết lập")</td>
+                        </tr>
+                        <tr>
+                            <th>Địa Chỉ Đăng Ký:</th>
+                            <td>@(Model.DiaChi ?? "Chưa thiết lập")</td>
+                        </tr>
+                    </table>
+                    <div class="text-end mt-4">
+                        <a href="@Url.Action("Index", "AdminAccount")" class="btn btn-secondary px-4">Quay lại danh sách</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="abeeef23b9bc430d8140d64e9d82c5b9" Name="Diagram1">
+        <EntityTypeShape EntityType="QLSPModel.BinhLuan" Width="1.5" PointX="8.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSPModel.ChiTietDH" Width="1.5" PointX="11.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSPModel.ChiTietGH" Width="1.5" PointX="8.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSPModel.DanhGia" Width="1.5" PointX="8.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSPModel.DanhMucSP" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSPModel.DonHang" Width="1.5" PointX="9" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSPModel.GioHang" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSPModel.KhuyenMai" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSPModel.NguoiDung" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSPModel.SanPham" Width="1.5" PointX="6" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSPModel.sysdiagram" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSPModel.TinTuc" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSPModel.TrangThaiDonHang" Width="1.5" PointX="6.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSPModel.TrangThaiSanPham" Width="1.5" PointX="3.75" PointY="4.875" IsExpanded="true" />
+        <AssociationConnector Association="QLSPModel.FK__BinhLuan__MaNguo__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSPModel.FK__BinhLuan__MaSanP__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSPModel.FK__ChiTietDH__MaDon__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSPModel.FK__ChiTietDH__MaSan__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSPModel.FK__ChiTietGH__MaGio__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSPModel.FK__ChiTietGH__MaSan__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSPModel.FK__DanhGia__MaNguoi__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSPModel.FK__DanhGia__MaSanPh__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSPModel.FK__KhuyenMai__MaDan__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSPModel.FK__SanPham__MaDanhM__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSPModel.FK__DonHang__MaNguoi__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSPModel.FK__DonHang__MaTrang__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSPModel.FK__GioHang__MaNguoi__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSPModel.FK__KhuyenMai__MaSan__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSPModel.FK__SanPham__MaTrang__46E78A0C" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

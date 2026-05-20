@@ -1,0 +1,66 @@
+﻿@model TheGioiDiDong.Models.SanPham
+@{
+    ViewBag.Title = "Cập Nhật Sản Phẩm";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container mt-4 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-header bg-primary text-white fw-bold">
+                    ✏️ Cập Nhật Sản Phẩm: @Model.TenSanPham
+                </div>
+                <div class="card-body p-4 bg-light">
+                    @using (Html.BeginForm("Edit", "AdminProduct", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(model => model.MaSanPham)
+
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="fw-bold">Tên Sản Phẩm <span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.TenSanPham, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="fw-bold">Giá Bán (VNĐ) <span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control", @type = "number", @required = "required" } })
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="fw-bold">Số Lượng Kho</label>
+                                @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="fw-bold">Danh Mục</label>
+                                @Html.DropDownList("MaDanhMuc", null, htmlAttributes: new { @class = "form-select" })
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="fw-bold">Trạng Thái</label>
+                                @Html.DropDownList("MaTrangThai", null, htmlAttributes: new { @class = "form-select" })
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <label class="fw-bold">Tên File Hình Ảnh</label>
+                                @Html.EditorFor(model => model.HinhAnh, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+
+                            <div class="col-md-12 mb-4">
+                                <label class="fw-bold">Mô Tả Sản Phẩm</label>
+                                @Html.TextAreaFor(model => model.MoTa, new { @class = "form-control", @rows = "4" })
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="@Url.Action("Index", "AdminProduct")" class="btn btn-outline-secondary">Hủy bỏ</a>
+                            <button type="submit" class="btn btn-primary fw-bold">💾 Lưu Thay Đổi</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

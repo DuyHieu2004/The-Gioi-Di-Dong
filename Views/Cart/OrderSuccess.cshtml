@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Đặt hàng thành công";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5 mb-5 text-center">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow border-0" style="border-radius: 16px;">
+                <div class="card-body p-5">
+
+                    <div class="mb-4">
+                        <span style="font-size: 80px; color: #28a745; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">
+                            ✅
+                        </span>
+                    </div>
+
+                    <h1 class="fw-bold text-success mb-3">Đặt Hàng Thành Công!</h1>
+
+                    <p class="fs-5 text-dark mb-4">
+                        Cảm ơn bạn đã tin tưởng và mua sắm tại <strong>Thế Giới Di Động</strong>.<br />
+                        Đơn hàng của bạn đã được lưu vào hệ thống và đang trong trạng thái chờ xác nhận.
+                    </p>
+
+                    <div class="alert alert-info border-0 shadow-sm mx-auto" role="alert" style="border-radius: 12px; max-width: 80%;">
+                        💡 <strong class="text-primary">Lưu ý:</strong> Nhân viên chăm sóc khách hàng sẽ sớm liên hệ với bạn qua số điện thoại để xác nhận đơn hàng và cập nhật thời gian giao hàng dự kiến.
+                    </div>
+
+                    <hr class="text-muted my-4 mx-auto" style="width: 50%;">
+
+                    <div class="mt-4 d-flex justify-content-center gap-3 flex-wrap">
+                        <a href="@Url.Action("Index", "Product")" class="btn btn-primary btn-lg fw-bold px-4 py-2 shadow-sm" style="border-radius: 30px;">
+                            🛒 Tiếp tục mua sắm
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

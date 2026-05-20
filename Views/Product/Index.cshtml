@@ -1,0 +1,119 @@
+﻿@model IEnumerable<TheGioiDiDong.Models.SanPham>
+@{
+    ViewBag.Title = "Trang chủ - Sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /* Hiệu ứng nổi thẻ sản phẩm khi rê chuột */
+    .product-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
+            border-color: #0d6efd !important;
+        }
+    /* Làm đẹp thanh tìm kiếm */
+    .search-bar {
+        border-radius: 30px 0 0 30px;
+        padding-left: 20px;
+        box-shadow: none !important;
+    }
+
+    .btn-search {
+        border-radius: 0 30px 30px 0;
+        padding: 0 25px;
+        font-weight: bold;
+    }
+
+    /* Làm đẹp sidebar danh mục */
+    .category-list .list-group-item {
+        border: none;
+        border-bottom: 1px solid #f8f9fa;
+        padding: 12px 20px;
+    }
+
+        .category-list .list-group-item:last-child {
+            border-bottom: none;
+        }
+
+    .category-list .active {
+        background-color: #0d6efd;
+        font-weight: bold;
+        border-radius: 8px !important;
+        color: white !important;
+    }
+</style>
+
+<div class="row mt-4 mb-5">
+    <div class="col-md-3 mb-4">
+        <div class="card shadow-sm border-0" style="border-radius: 12px;">
+            <div class="card-header bg-primary text-white text-center fw-bold text-uppercase" style="border-radius: 12px 12px 0 0;">
+                Danh Mục Sản Phẩm
+            </div>
+            <div class="list-group list-group-flush category-list p-2">
+                <a href="@Url.Action("Index", "Product")" class="list-group-item list-group-item-action text-dark @(ViewBag.CurrentCategory == null ? "active" : "")">
+                    📦 Tất cả sản phẩm
+                </a>
+                @foreach (var item in ViewBag.Categories)
+                {
+                    <a href="@Url.Action("Index", "Product", new { categoryId = item.MaDanhMuc })"
+                       class="list-group-item list-group-item-action text-dark @(ViewBag.CurrentCategory == item.MaDanhMuc ? "active" : "")">
+                        🏷️ @item.TenDanhMuc
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <form action="@Url.Action("Index", "Product")" method="get" class="mb-4">
+            <div class="input-group shadow-sm" style="border-radius: 30px;">
+                <input type="text" name="searchString" class="form-control form-control-lg search-bar border-primary border-end-0" placeholder="Bạn cần tìm điện thoại, laptop gì hôm nay?" value="@ViewBag.CurrentSearch">
+                <button class="btn btn-primary btn-search" type="submit">🔍 Tìm kiếm</button>
+            </div>
+        </form>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach (var p in Model)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm product-card border border-light bg-white">
+                        <div class="p-3 bg-white d-flex align-items-center justify-content-center" style="height: 240px;">
+                            <img src="~/Content/Images/@p.HinhAnh" class="img-fluid" alt="@p.TenSanPham" style="max-height: 100%; object-fit: contain;">
+                        </div>
+
+                        <div class="card-body d-flex flex-column text-center bg-light" style="border-radius: 0 0 12px 12px;">
+                            <h5 class="card-title text-truncate fw-bold mb-2 text-dark" title="@p.TenSanPham">@p.TenSanPham</h5>
+                            <p class="card-text text-danger fs-5 fw-bolder mb-3">@String.Format("{0:0,0}", p.Gia) ₫</p>
+
+                            <div class="mt-auto d-grid gap-2">
+                                @if (Session["QuyenHan"] == null || Session["QuyenHan"].ToString() != "Admin")
+                                {
+                                    <a href="@Url.Action("AddToCart", "Cart", new { id = p.MaSanPham })" class="btn btn-warning fw-bold text-dark shadow-sm">
+                                        🛒 Thêm vào giỏ
+                                    </a>
+                                }
+
+                                <a href="@Url.Action("Details", "Product", new { id = p.MaSanPham })" class="btn btn-outline-secondary btn-sm">
+                                    📄 Xem chi tiết
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @if (!Model.Any())
+        {
+            <div class="alert alert-info text-center mt-4 shadow-sm" role="alert">
+                Không tìm thấy sản phẩm nào phù hợp với yêu cầu của bạn.
+            </div>
+        }
+    </div>
+</div>
