@@ -126,7 +126,7 @@ TheGioiDiDong/
 Có 2 cách để lấy mã nguồn về máy:
 * **Cách 1 (Dùng Git):** Mở Terminal (Git Bash, Command Prompt hoặc PowerShell) tại thư mục bạn muốn lưu dự án và chạy lệnh:
   ```bash
-  git clone [https://github.com/your-username/TheGioiDiDong.git](https://github.com/your-username/TheGioiDiDong.git)
+  git clone https://github.com/DuyHieu2004/The-Gioi-Di-Dong.git
   ```
 
 ###  Bước 2: Thiết lập Cơ sở dữ liệu (SQL Server)
